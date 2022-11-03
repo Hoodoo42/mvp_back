@@ -30,7 +30,7 @@ CREATE TABLE `gamer` (
   `first_name` varchar(15) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Gamer_UNusername` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `gamer_session` (
   PRIMARY KEY (`id`),
   KEY `Gamer_Session_FK` (`gamer_id`),
   CONSTRAINT `Gamer_Session_FK` FOREIGN KEY (`gamer_id`) REFERENCES `gamer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `points` (
   PRIMARY KEY (`id`),
   KEY `gamer_id_FK` (`gamer_id`),
   CONSTRAINT `gamer_id_FK` FOREIGN KEY (`gamer_id`) REFERENCES `gamer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `points` (
 LOCK TABLES `points` WRITE;
 /*!40000 ALTER TABLE `points` DISABLE KEYS */;
 INSERT INTO `points` VALUES
-(12,1,1),
+(25,1,1),
 (13,2,5);
 /*!40000 ALTER TABLE `points` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -127,27 +127,6 @@ BEGIN
 	WHERE password = PASSWORD(password_input);
 	SELECT ROW_COUNT();
 	COMMIT;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'IGNORE_SPACE,STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `gamer_get` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `gamer_get`(id_input int unsigned)
-BEGIN
-	SELECT g.username, p.points 
-	FROM gamer g INNER JOIN points p ON p.gamer_id = g.id
-	WHERE g.id = id_input;
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -299,7 +278,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `points_update`(points_input int unsigned, gamer_id_input int unsigned)
     MODIFIES SQL DATA
 BEGIN
-	UPDATE points p SET points = points_input WHERE gamer_id = gamer_id_input;
+	UPDATE points p SET points = points + points_input WHERE gamer_id = gamer_id_input;
 	SELECT ROW_COUNT();
 	COMMIT;
 END ;;
@@ -318,4 +297,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-02 18:06:40
+-- Dump completed on 2022-11-03 17:14:39

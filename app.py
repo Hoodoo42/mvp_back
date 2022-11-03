@@ -9,7 +9,6 @@ from uuid import uuid4
 app = Flask(__name__)
 CORS(app)
 
-
 # ## GAMER
 @app.get('/api/gamer')
 def get_gamer():
