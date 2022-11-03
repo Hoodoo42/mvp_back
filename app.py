@@ -1,4 +1,3 @@
-from unittest import result
 from dbcreds import production_mode
 import dbhelpers as dbh
 from flask import Flask, request, make_response
@@ -100,7 +99,9 @@ def update_points():
     if(type(results) == list):
         return make_response(json.dumps(results, default=str), 200)
     else:
-        return make_response(json.dumps('sorry, error', default=str), 500)       
+        return make_response(json.dumps('sorry, error', default=str), 500)   
+
+
 
         
 if (production_mode == True):
