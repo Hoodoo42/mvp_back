@@ -34,22 +34,6 @@ CREATE TABLE `gamer` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `gamer`
---
-
-LOCK TABLES `gamer` WRITE;
-/*!40000 ALTER TABLE `gamer` DISABLE KEYS */;
-INSERT INTO `gamer` VALUES
-(1,'user1','*22A99BA288DB55E8E230679259740873101CD636','2022-11-01','Turner'),
-(2,'user2','*1B884EF334D678B0743C8CE0425F980669D8FBB6','2022-11-01',NULL),
-(4,'user4','*B718D8767BBACFBCE02BA2669ECCEB05930FF7D7','2022-11-01',NULL),
-(5,'user5','*9D3D6FA96FA91117D387A4B990C41F5809A536EE','2022-11-02',NULL),
-(7,'user7','*BEA19EBE4ACA6B1820BF580B4054EB6B5B0D198D','2022-11-10',NULL),
-(8,'user8','*F40D7E5342EC4960531243A96CC2E94079BC11B7','2022-11-10',NULL);
-/*!40000 ALTER TABLE `gamer` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `gamer_session`
 --
 
@@ -68,25 +52,6 @@ CREATE TABLE `gamer_session` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `gamer_session`
---
-
-LOCK TABLES `gamer_session` WRITE;
-/*!40000 ALTER TABLE `gamer_session` DISABLE KEYS */;
-INSERT INTO `gamer_session` VALUES
-(2,1,'213984729874','2022-11-01'),
-(3,2,'213984729874','2022-11-01'),
-(4,5,'4e234324f47','2022-11-02'),
-(7,4,'5dc91fabfd8f4d9e9d669ea8ed6123fa','2022-11-10'),
-(56,8,'7782268756ac4874b7c6d09a559b6773','2022-11-12'),
-(57,4,'95c67b3352d947f4a481d71f97a3f9f0','2022-11-12'),
-(62,7,'fc24282fb56143059d8e215a7b3bb706','2022-11-14'),
-(63,7,'e1e0711118494bd3b5ea5b5c980c6f31','2022-11-14'),
-(64,7,'e53d16648421487da441ab55cba702ce','2022-11-15');
-/*!40000 ALTER TABLE `gamer_session` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `points`
 --
 
@@ -102,20 +67,6 @@ CREATE TABLE `points` (
   CONSTRAINT `gamer_id_FK` FOREIGN KEY (`gamer_id`) REFERENCES `gamer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `points`
---
-
-LOCK TABLES `points` WRITE;
-/*!40000 ALTER TABLE `points` DISABLE KEYS */;
-INSERT INTO `points` VALUES
-(25,1,1),
-(13,2,5),
-(57,4,7),
-(0,6,8);
-/*!40000 ALTER TABLE `points` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Dumping routines for database 'Playground'
@@ -307,4 +258,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-15 21:20:01
+-- Dump completed on 2022-11-17  9:11:56
