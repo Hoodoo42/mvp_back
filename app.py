@@ -66,6 +66,10 @@ def login_gamer():
     if (is_valid != None):
         return make_response(json.dumps(is_valid, default=str), 400)
 
+    is_valid = apih.check_endpoint_info(request.headers, ['gamer_id'])
+    if (is_valid != None):
+        return make_response(json.dumps(is_valid, default=str), 400)
+
     token = uuid4().hex
     results = dbh.run_statement('CALL gamer_login(?,?,?)', [
                                 request.json.get('username'), request.json.get('password'), token])
